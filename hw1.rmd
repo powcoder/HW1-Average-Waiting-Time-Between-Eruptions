@@ -1,0 +1,45 @@
+---
+title: "hw1"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+sessionInfo()
+```
+
+## 1. Average Waiting Time Between Eruptions
+
+The average waiting time between eruptions of the *Old Faithful geyser* in the data set `faithful` is `r mean(faithful$waiting)` seconds.
+
+## 2. First Four Eruption Durations
+
+First four eruption durations of `faithful` dataset is as follows:
+```{r}
+faithful$eruptions[1:4]
+```
+
+## 3.First Five Records of the Eruptions Data
+
+First 5 Rows of faithful dataset:
+
+```{r, echo = FALSE, message = FALSE}
+faithful_head <- head(faithful, n = 5)
+kbl <- knitr::kable(faithful_head, format = "html")
+
+if (!require(kableExtra)) {
+  install.packages('kableExtra')
+}
+kableExtra::kable_styling(kbl, full_width = FALSE)
+```
+
+## 4. Histograms of Eruption Durations
+
+```{r}
+hist(faithful$eruptions,
+     main = "Histogram of Eruption Durations",
+     xlab = "Durations")
+```
+
+I expected a normal distribution, but the histogram is not normal. Eruption durations have two peaks: shorter than 2 seconds or between 4 to 5 seconds. *Old Faithful geyser* doesn't like the middle ground.
+
